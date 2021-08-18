@@ -1,0 +1,16 @@
+
+/* - Variables - */
+:root {
+    --primary-clr: #2FC8B8;
+    --second-clr: #1E776E;
+    --white-clr: #FFFFFF;
+    --white-clr-alt: #EEF6F6;
+    --white-clr-alt-2: #00000029;
+    --border-clr: #E6F5F3;
+    --gray-clr: #0000001F;
+    --gray-clr: #00000029;
+    --text-clr: #000000;
+    --text-clr-alt: #888888;
+    --error-clr: #e63946;
+    --warning-clr: #ffd166;
+}
