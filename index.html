@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../boxicons/css/boxicons.min.css">
     <link rel="stylesheet" href="assets/css/style.css">
+    <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
     <title>CoviCalc</title>
 </head>
 <body>
@@ -23,57 +25,57 @@
         
                 <!-- Search section -->
                 <div class="seach-country-form-container">
-                    <input type="text" name="country" id="country">
+                    <input type="text" name="country" id="country-input" class="country-input">
                     <div class="date-container">
                         <div class="date">14 Feb 2021</div>
                         <i class="bx bx-calendar"></i>
                     </div>
-                    <button class="submit-btn">SUBMIT</button>
+                    <button class="submit-country-btn">SUBMIT</button>
                 </div>
             </div>
 
             <!-- Result -->
             <div class="search-result-container">
-                <div class="result">2,188,881</div>
+                <div class="result">0</div>
                 <span class="result-title">Cumulatively</span>
             </div>
             <div class="more-results-container">
                 <!-- result more container 1 -->
                 <div class="result-more-container-1 result-more-container">
-                    <div class="result-more-number">11.270</div>
+                    <div class="result-more-number tests">0</div>
                     <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
 
                 <!-- result more container 2 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number">11.270</div>
-                    <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number positive-cases">0</div>
+                    <div class="more-result-title">Positive cases</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 3 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number">11.270</div>
-                    <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number hospitalized">0</div>
+                    <div class="more-result-title hospitalized">Hospitalized</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 4 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number">11.270</div>
-                    <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number recovered">0</div>
+                    <div class="more-result-title">Recovered</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 5 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number">11.270</div>
-                    <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number deaths">0</div>
+                    <div class="more-result-title">Deaths</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 6 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number">11.270</div>
-                    <div class="more-result-title">Tests</div>
-                    <div class="result-more-number-muted">2,188,881</div>
+                    <div class="result-more-number vaccinated">0</div>
+                    <div class="more-result-title">Vaccinated</div>
+                    <div class="result-more-number-muted">--</div>
                 </div>
             </div>
         </div>
@@ -83,23 +85,63 @@
             <div class="per-continents-card-container">
 
                 <!-- will be created by javaScript -->
-                <div class="continent-card">
+                <!-- <div class="continent-card continent-card-africa">
                     <div class="left-side-container">
-                        <h2 class="continent-title">Africa</h2>
+                        <h2 class="continent-title continent-title-africa">Africa</h2>
+
                         <div class="continent-new-cases-container">
-                            <h3 class="continet-new-cases-result">11,270</h3>
-                            <h4>New cases</h4>
+                            <h3 class="continent-new-cases-result continent-new-cases-result-africa">11,270</h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-africa">New cases</h4>
                         </div>
-                        <div class="continet-all-cases">All cases: 22,188,881</div>
+                        <div class="continent-all-cases continent-all-cases-africa">All cases: 22,188,881</div>
                     </div>
+
                     <div class="right-side-container">
                         <div class="part part-1">
-                            <h3 class="continet-new-cases-result-right">619</h3>
-                            <h4>New Deaths</h4>
-                            <h4>Total Deaths: <b>4,254</b></h4>
+                            <h3 class="continent-new-deaths-result-right continent-new-deaths-result-right-africa">619</h3>
+                            <h4 class="right-result-label right-result-label-africa">New deaths</h4>
+                            <h4 class="right-result-sub_label continent-total-deaths-result-right-africa">Total deaths: 4,254</h4>
                         </div>
-                        <div class="part part-2"></div>
-                        <div class="part part-3"></div>
+                        <div class="part part-2">
+                            <h3 class="continent-new-recovered-result-right continent-new-recovered-result-right-africa">12,955</h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-recovered continent-total-recovered-africa">Total recovered: 12,254,254</h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-new-vaccinated-result-right continent-new-vaccinated-result-right-africa">1,878,564</h3>
+                            <h4 class="right-result-label right-result-label">Newly vaccinated</h4>
+                            <h4 class="continent-total-vaccinated-right continent-total-vaccinated-right-africa">Total vaccinated: 14,784,254</h4>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div class="continent-card continent-card-africa">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-africa"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-africa"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-africa">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-africa"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-new-deaths-result-right continent-new-deaths-result-right-africa"></h3>
+                            <h4 class="right-result-label right-result-label-africa">New deaths</h4>
+                            <h4 class="right-result-sub_label continent-total-deaths-result-right-africa"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-new-recovered-result-right continent-new-recovered-result-right-africa"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-recovered continent-total-recovered-africa"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-new-vaccinated-result-right continent-new-vaccinated-result-right-africa"></h3>
+                            <h4 class="right-result-label right-result-label"></h4>
+                            <h4 class="continent-total-vaccinated-right continent-total-vaccinated-right-africa"></h4>
+                        </div>
                     </div>
                 </div>
             </div>
