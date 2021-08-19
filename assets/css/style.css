@@ -14,3 +14,8 @@
     --error-clr: #e63946;
     --warning-clr: #ffd166;
 }
+
+.more-results-container {
+    display: flex;
+    gap: 2rem;
+}
