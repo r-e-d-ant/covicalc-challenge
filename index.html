@@ -4,76 +4,81 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../boxicons/css/boxicons.min.css">
-    <link rel="stylesheet" href="assets/css/style.css">
     <!-- <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
+    <link rel="stylesheet" href="assets/owlcarousel/dist/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/owlcarousel/dist/assets/owl.theme.default.min.css">
+    <link rel="stylesheet" href="../boxicons/css/boxicons.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
     <title>CoviCalc</title>
 </head>
 <body>
     <header>
-        <div class="logo">covicalc</div>
-        <div class="contact-btn"></div>
+        <div class="logo">COVICALC</div>
+        <div class="btn contact-btn">CONTACT</div>
     </header>
-    <main>
+    <main class="">
         <div class="hero-section">
             <div class="hero-title-n-form">
-                <div class="hero-title-container">
+                <div class="hero-title-container container">
                     <h2 class="hero-title">Updates</h2>
                     <h3 class="search-country-title">Search a country</h3>
                 </div>
         
                 <!-- Search section -->
-                <div class="seach-country-form-container">
-                    <input type="text" name="country" id="country-input" class="country-input">
-                    <div class="date-container">
-                        <div class="date">14 Feb 2021</div>
-                        <i class="bx bx-calendar"></i>
+                <div class="search-country-form-container container">
+                    <div class="search-country-form-sub-container">
+                        <input type="text" name="country" id="country-input" class="country-input">
+                        <div class="date-container">
+                            <div class="date">14 Feb 2021</div>
+                            <i class="bx bx-calendar"></i>
+                        </div>
+                        <button class="btn submit-country-btn">SUBMIT</button>
                     </div>
-                    <button class="submit-country-btn">SUBMIT</button>
+                </div>
+
+                <!-- Result -->
+                <div class="search-result-container">
+                    <div class="result">2,188,881</div>
+                    <span class="result-title">Cumulatively</span>
                 </div>
             </div>
 
-            <!-- Result -->
-            <div class="search-result-container">
-                <div class="result">0</div>
-                <span class="result-title">Cumulatively</span>
-            </div>
             <div class="more-results-container">
                 <!-- result more container 1 -->
                 <div class="result-more-container-1 result-more-container">
-                    <div class="result-more-number tests">0</div>
+                    <div class="result-more-number tests">11,270</div>
                     <div class="more-result-title">Tests</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
 
                 <!-- result more container 2 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number positive-cases">0</div>
+                    <div class="result-more-number positive-cases">619</div>
                     <div class="more-result-title">Positive cases</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 3 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number hospitalized">0</div>
+                    <div class="result-more-number hospitalized">20</div>
                     <div class="more-result-title hospitalized">Hospitalized</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 4 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number recovered">0</div>
+                    <div class="result-more-number recovered">19</div>
                     <div class="more-result-title">Recovered</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 5 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number deaths">0</div>
+                    <div class="result-more-number deaths">9</div>
                     <div class="more-result-title">Deaths</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
                 <!-- result more container 6 -->
                 <div class="result-more-container-2 result-more-container">
-                    <div class="result-more-number vaccinated">0</div>
+                    <div class="result-more-number vaccinated">48,660</div>
                     <div class="more-result-title">Vaccinated</div>
                     <div class="result-more-number-muted">--</div>
                 </div>
@@ -82,39 +87,8 @@
 
         <div class="per-continent-container">
             <h2 class="per-continent-title">Per continents</h2>
-            <div class="per-continents-card-container">
-
-                <!-- will be created by javaScript -->
-                <!-- <div class="continent-card continent-card-africa">
-                    <div class="left-side-container">
-                        <h2 class="continent-title continent-title-africa">Africa</h2>
-
-                        <div class="continent-new-cases-container">
-                            <h3 class="continent-new-cases-result continent-new-cases-result-africa">11,270</h3>
-                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-africa">New cases</h4>
-                        </div>
-                        <div class="continent-all-cases continent-all-cases-africa">All cases: 22,188,881</div>
-                    </div>
-
-                    <div class="right-side-container">
-                        <div class="part part-1">
-                            <h3 class="continent-new-deaths-result-right continent-new-deaths-result-right-africa">619</h3>
-                            <h4 class="right-result-label right-result-label-africa">New deaths</h4>
-                            <h4 class="right-result-sub_label continent-total-deaths-result-right-africa">Total deaths: 4,254</h4>
-                        </div>
-                        <div class="part part-2">
-                            <h3 class="continent-new-recovered-result-right continent-new-recovered-result-right-africa">12,955</h3>
-                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
-                            <h4 class="continent-total-recovered continent-total-recovered-africa">Total recovered: 12,254,254</h4>
-                        </div>
-                        <div class="part part-3">
-                            <h3 class="continent-new-vaccinated-result-right continent-new-vaccinated-result-right-africa">1,878,564</h3>
-                            <h4 class="right-result-label right-result-label">Newly vaccinated</h4>
-                            <h4 class="continent-total-vaccinated-right continent-total-vaccinated-right-africa">Total vaccinated: 14,784,254</h4>
-                        </div>
-                    </div>
-                </div> -->
-
+            <div class="per-continents-card-container owl-carousel owl-theme">
+                <!-- Africa -->
                 <div class="continent-card continent-card-africa">
                     <div class="left-side-container">
                         <h2 class="continent-title continent-title-africa"></h2>
@@ -128,19 +102,174 @@
 
                     <div class="right-side-container">
                         <div class="part part-1">
-                            <h3 class="continent-new-deaths-result-right continent-new-deaths-result-right-africa"></h3>
+                            <h3 class="continent-result-right continent-new-deaths-result-right-africa"></h3>
                             <h4 class="right-result-label right-result-label-africa">New deaths</h4>
-                            <h4 class="right-result-sub_label continent-total-deaths-result-right-africa"></h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-africa"></h4>
                         </div>
                         <div class="part part-2">
-                            <h3 class="continent-new-recovered-result-right continent-new-recovered-result-right-africa"></h3>
+                            <h3 class="continent-result-right continent-new-recovered-result-right-africa"></h3>
                             <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
-                            <h4 class="continent-total-recovered continent-total-recovered-africa"></h4>
+                            <h4 class="continent-total-right continent-total-recovered-africa"></h4>
                         </div>
                         <div class="part part-3">
-                            <h3 class="continent-new-vaccinated-result-right continent-new-vaccinated-result-right-africa"></h3>
-                            <h4 class="right-result-label right-result-label"></h4>
-                            <h4 class="continent-total-vaccinated-right continent-total-vaccinated-right-africa"></h4>
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-africa"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-africa"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Europe -->
+                <div class="continent-card continent-card-europe">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-europe"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-europe"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-europe">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-europe"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-result-right continent-new-deaths-result-right-europe"></h3>
+                            <h4 class="right-result-label right-result-label-europe">New deaths</h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-europe"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-result-right continent-new-recovered-result-right-europe"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-right continent-total-recovered-europe"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-europe"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-europe"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Asia -->
+                <div class="continent-card continent-card-asia">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-asia"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-asia"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-asia">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-asia"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-result-right continent-new-deaths-result-right-asia"></h3>
+                            <h4 class="right-result-label right-result-label-asia">New deaths</h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-asia"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-result-right continent-new-recovered-result-right-asia"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-right continent-total-recovered-asia"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-asia"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-asia"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- North america -->
+                <div class="continent-card continent-card-north_america">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-north_america"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-north_america"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-north_america">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-north_america"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-result-right continent-new-deaths-result-right-north_america"></h3>
+                            <h4 class="right-result-label right-result-label-north_america">New deaths</h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-north_america"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-result-right continent-new-recovered-result-right-north_america"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-right continent-total-recovered-north_america"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-north_america"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-north_america"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- south America -->
+                <div class="continent-card continent-card-south_america">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-south_america"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-south_america"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-south_america">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-south_america"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-result-right continent-new-deaths-result-right-south_america"></h3>
+                            <h4 class="right-result-label right-result-label-south_america">New deaths</h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-south_america"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-result-right continent-new-recovered-result-right-south_america"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-right continent-total-recovered-south_america"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-south_america"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-south_america"></h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Oceania -->
+                <div class="continent-card continent-card-oceania">
+                    <div class="left-side-container">
+                        <h2 class="continent-title continent-title-oceania"></h2>
+
+                        <div class="continent-new-cases-container">
+                            <h3 class="continent-new-cases-result continent-new-cases-result-oceania"></h3>
+                            <h4 class="continent-new-cases-result-label continent-new-cases-result-label-oceania">New cases</h4>
+                        </div>
+                        <div class="continent-all-cases continent-all-cases-oceania"></div>
+                    </div>
+
+                    <div class="right-side-container">
+                        <div class="part part-1">
+                            <h3 class="continent-result-right continent-new-deaths-result-right-oceania"></h3>
+                            <h4 class="right-result-label right-result-label-oceania">New deaths</h4>
+                            <h4 class="continent-total-right continent-total-deaths-result-right-oceania"></h4>
+                        </div>
+                        <div class="part part-2">
+                            <h3 class="continent-result-right continent-new-recovered-result-right-oceania"></h3>
+                            <h4 class="right-result-label newly-recovered-label">Newly recovered</h4>
+                            <h4 class="continent-total-right continent-total-recovered-oceania"></h4>
+                        </div>
+                        <div class="part part-3">
+                            <h3 class="continent-result-right continent-new-vaccinated-result-right-oceania"></h3>
+                            <h4 class="right-result-label right-result-label">New vaccinated</h4>
+                            <h4 class="continent-total-right continent-total-vaccinated-right-oceania"></h4>
                         </div>
                     </div>
                 </div>
@@ -148,45 +277,50 @@
         </div>
 
         <div class="developer-picture-and-name">
-            <img src="" alt="">
+            <img class="developer-img" src="assets/images/p2.jpg" alt="" loading="lazy">
             <div class="developer">
-                <div class="name"></div>
-                <div class="skill"></div>
-                <div class="date-submited"></div>
+                <div class="name">Thierry MUGISHA</div>
+                <div class="skill">Web developer, UI/UX Designer</div>
+                <div class="date-submited">20 August 2021</div>
             </div>
         </div>
     </main>
+
     <footer>
         <div class="top-footer">
             <div class="footer-title">Reach me</div>
             <div class="developer-infos">
                 <ul class="infos-items infos-items-1">
                     <li class="info-item-title">Email</li>
-                    <li class="info-item">Insert your email</li>
+                    <li class="info-item">mug.thierry.l@gmail.com</li>
                 </ul>
 
                 <ul class="infos-items infos-items-2">
                     <li class="info-item-title">Phone</li>
-                    <li class="info-item">Insert your phone here</li>
+                    <li class="info-item">+250787741477</li>
                 </ul>
 
                 <ul class="infos-items infos-items-3">
                     <li class="info-item-title">Profile</li>
-                    <li class="info-item">Insert link here</li>
+                    <li class="info-item">
+                        <a href="https://thierrymugisha.me" class="portolio-link">Thierry Mugisha portfolio</a>
+                    </li>
                 </ul>
             </div>
         </div>
 
         <div class="sub-footer">
             <span class="developer-name">
-                Developed by <a href="#">Thierry Mugisha</a>
+                Developed by <a href="https://thierrymugisha.me" class="developer-designer-link">Thierry Mugisha</a>
             </span>
             <span class="designer-name">
-                Designed by <a href="#">Awesomity Lab</a>
+                Designed by <a href="https://awesomity.rw" class="developer-designer-link">Awesomity Lab</a>
             </span>
         </div>
     </footer>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="assets/owlcarousel/dist/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
 </body>
 </html>
