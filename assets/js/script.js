@@ -1,9 +1,6 @@
 
 'use strict'
 
-// if (window.navigator.geolocation) {
-//  // Geolocation available
-// } 
 
 const countryInput = document.querySelector('.country-input');
 const submitCountryButton = document.querySelector('.submit-country-btn');
@@ -15,9 +12,10 @@ const recovered = document.querySelector('.recovered');
 const deaths = document.querySelector('.deaths');
 const vaccinated = document.querySelector('.vaccinated');
 
+// country image in form
 const countryImg = document.querySelector('.country-img');
 
-// Autofocus and Auto select country input on hover
+// Autofocus and Auto select country input on form hover
 countryInput.addEventListener('mouseover', () => {
 	countryInput.focus();
 	countryInput.select();
@@ -37,7 +35,19 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
 
 todaysDate.innerText = `${day} ${monthNames[month]} ${year}`;
 
-// Function to Get country covid data
+// ---------- --- -------- -- --------- --- -------- ---
+
+// Auto completion on search
+
+/* An array containing all the country names in the world */
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
+
+$("#country-input" ).autocomplete({
+	source: countries
+});
+
+
+// Function to Get country covid data from api
 
 const getCountryCovidData = (countryName, countryInputForm) => {
 	const myRequest = `https://corona.lmao.ninja/v2/countries/${countryName}?yesterday&strict&query%20`
@@ -68,26 +78,29 @@ const getCountryCovidData = (countryName, countryInputForm) => {
 	}).catch(console.error);
 };
 
+// Get the rescent searched country in the local storage where it have been stored when submited the form
 const recentSearchedCountry = localStorage.getItem('recentSearchedCountry');
 
+// Show the covid 19 data stored in local storage for the recent searched country on load of the window
 window.onload = (event) => {
 	if(recentSearchedCountry === undefined){
-		console.log("No recent in local storage")
+		console.log("No recent searched country in local storage")
 	}else {
 		getCountryCovidData(recentSearchedCountry, countryInput);
 	}
 }
 
 
-// Submit country by clicking submit button to see their covid data
+// Submit country by clicking submit button to see their covid 19 data
 submitCountryButton.addEventListener('click', (e) => {
-	// Prevent default behavior like refresh the window on form submit
+	// Prevent default behavior: like refresh the window on form submit
 	e.preventDefault();
 
-	// Check if the form is not empty then give their data
+	// Check if the form is not empty then get the covid 19 data
 	if(countryInput.value !== "") {
-		// Capital the first letter of the input
+		// Capitalize the first letter of the input to avoid mismatching
 		const fullCountryName = countryInput.value.charAt(0).toUpperCase() + countryInput.value.slice(1);
+
 		// Call the function to get Country covid data
 		getCountryCovidData(fullCountryName, countryInput);
 
@@ -100,13 +113,14 @@ submitCountryButton.addEventListener('click', (e) => {
 // Submit country by clicking enter key to see their covid data
 countryInput.addEventListener('keyup', (e) => {
 	if(e.key === "Enter" || e.keycode === 13){
-		// Prevent default behavior like refresh the window on form submit
+		// Prevent default behavior: like refresh the window on form submit
 		e.preventDefault();
 
 		// Check if the form is not empty then give their data
 		if(countryInput.value !== "") {
-			// Capital the first letter of the input
+			// Capitalize the first letter of the input to avoid mismatching
 			const fullCountryName = countryInput.value.charAt(0).toUpperCase() + countryInput.value.slice(1);
+
 			// Call the function to get Country covid data
 			getCountryCovidData(fullCountryName, countryInput);
 	
@@ -391,12 +405,13 @@ const getContinentCovidData = () => {
 	})
 }
 
+
+// call the function to show covid 19 data for all the continents.
 getContinentCovidData();
 
-
+// Carousel of the continents card
 $(document).ready(function(){
 	$(".owl-carousel").owlCarousel({
-		// margin:10,
 		center: true,
 		autoplay: true,
 		autoplayTimeout: 10000,
@@ -421,18 +436,6 @@ $(document).ready(function(){
 		}
 	});
 });
-
-
-
-// Auto completion
-
-/*An array containing all the country names in the world:*/
-var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
-
-$("#country-input" ).autocomplete({
-	source: countries
-});
-
 
 
 
