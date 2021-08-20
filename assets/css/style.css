@@ -311,10 +311,16 @@ header {
     font-size: .9rem;
     margin: 1rem 0;
 }
+.result-more-number-muted {
+    font-size: .7rem;
+    color: var(--text-clr);
+    opacity: .5;
+}
 
 @media screen and (min-width: 1024px){
     .more-results-container {
         width: 60rem;
+        padding: 1.5rem 0;
     }
     .result-more-number {
         color: var(--primary-clr);

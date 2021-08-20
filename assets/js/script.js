@@ -398,7 +398,8 @@ $(document).ready(function(){
 	$(".owl-carousel").owlCarousel({
 		// margin:10,
 		center: true,
-		autoplay:true,
+		autoplay: true,
+		autoplayTimeout: 10000,
 		responsiveClass:true,
 		responsive:{
 			0:{
