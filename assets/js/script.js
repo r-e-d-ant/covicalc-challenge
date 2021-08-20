@@ -15,6 +15,27 @@ const recovered = document.querySelector('.recovered');
 const deaths = document.querySelector('.deaths');
 const vaccinated = document.querySelector('.vaccinated');
 
+const countryImg = document.querySelector('.country-img');
+
+// Autofocus and Auto select country input on hover
+countryInput.addEventListener('mouseover', () => {
+	countryInput.focus();
+	countryInput.select();
+})
+
+// Display current date in country input form
+const todaysDate = document.querySelector('.date');
+
+var currentDate = new Date();
+var day = currentDate.getDate();
+var month = currentDate.getMonth();
+var year = currentDate.getFullYear();
+
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun",
+  "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
+];
+
+todaysDate.innerText = `${day} ${monthNames[month]} ${year}`;
 
 // Function to Get country covid data
 
@@ -23,18 +44,42 @@ const getCountryCovidData = (countryName, countryInputForm) => {
 	fetch(myRequest)
 	.then(response => response.json())
 	.then(data => {
-		countryInputForm.value = data.country;
-		result.innerText = data.cases;
-		tests.innerText = data.tests;
-		positiveCases.innerText = data.casesPerOneMillion;
-		hospitalized.innerText = "N/A";
-		recovered.innerText = data.recovered;
-		deaths.innerText = data.deaths;
-		vaccinated.innerText = "N/A"
+		if (data.country === undefined){
+			countryInputForm.value = "";
+			result.innerText = 0;
+			tests.innerText = 0;
+			positiveCases.innerText = 0;
+			hospitalized.innerText = 0;
+			recovered.innerText = 0;
+			deaths.innerText = 0;
+			vaccinated.innerText = 0;
+			countryImg.src = "./assets/images/x.png";
+		}else {
+			countryInputForm.value = data.country;
+			result.innerText = data.cases.toLocaleString();
+			tests.innerText = data.tests.toLocaleString();
+			positiveCases.innerText = data.casesPerOneMillion.toLocaleString();
+			hospitalized.innerText = "N/A";
+			recovered.innerText = data.recovered.toLocaleString();
+			deaths.innerText = data.deaths.toLocaleString();
+			vaccinated.innerText = "N/A";
+			countryImg.src = data['countryInfo']['flag'];
+		}
 	}).catch(console.error);
 };
 
-// Submit country to see their covid data
+const recentSearchedCountry = localStorage.getItem('recentSearchedCountry');
+
+window.onload = (event) => {
+	if(recentSearchedCountry === undefined){
+		console.log("No recent in local storage")
+	}else {
+		getCountryCovidData(recentSearchedCountry, countryInput);
+	}
+}
+
+
+// Submit country by clicking submit button to see their covid data
 submitCountryButton.addEventListener('click', (e) => {
 	// Prevent default behavior like refresh the window on form submit
 	e.preventDefault();
@@ -45,6 +90,29 @@ submitCountryButton.addEventListener('click', (e) => {
 		const fullCountryName = countryInput.value.charAt(0).toUpperCase() + countryInput.value.slice(1);
 		// Call the function to get Country covid data
 		getCountryCovidData(fullCountryName, countryInput);
+
+		// Store the searched country localy
+		localStorage.setItem('recentSearchedCountry', fullCountryName);
+	}
+});
+
+
+// Submit country by clicking enter key to see their covid data
+countryInput.addEventListener('keyup', (e) => {
+	if(e.key === "Enter" || e.keycode === 13){
+		// Prevent default behavior like refresh the window on form submit
+		e.preventDefault();
+
+		// Check if the form is not empty then give their data
+		if(countryInput.value !== "") {
+			// Capital the first letter of the input
+			const fullCountryName = countryInput.value.charAt(0).toUpperCase() + countryInput.value.slice(1);
+			// Call the function to get Country covid data
+			getCountryCovidData(fullCountryName, countryInput);
+	
+			// Store the searched country localy
+			localStorage.setItem('recentSearchedCountry', fullCountryName);
+		}
 	}
 });
 
@@ -63,26 +131,26 @@ const getContinentCovidData = () => {
 		continentNameOceania.innerText = continentDatas[0]['continent'];
 
 		const continentNewCasesOceania = document.querySelector('.continent-new-cases-result-oceania');
-		continentNewCasesOceania.innerText = continentDatas[0]['todayCases'];
+		continentNewCasesOceania.innerText = continentDatas[0]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesOceania = document.querySelector('.continent-all-cases-oceania');
-		continentAllCasesOceania.innerText = `All cases: ${continentDatas[0]['cases']}`;
+		continentAllCasesOceania.innerText = `All cases: ${continentDatas[0]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsOceania = document.querySelector('.continent-new-deaths-result-right-oceania');
-		continentNewDeathsOceania.innerText = continentDatas[0]['todayDeaths'];
+		continentNewDeathsOceania.innerText = continentDatas[0]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsOceania = document.querySelector('.continent-total-deaths-result-right-oceania');
-		continentTotalDeathsOceania.innerText = `Total deaths: ${continentDatas[0]['deaths']}`;
+		continentTotalDeathsOceania.innerText = `Total deaths: ${continentDatas[0]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredOceania = document.querySelector('.continent-new-recovered-result-right-oceania');
-		continentNewlyRecoveredOceania.innerText = continentDatas[0]['recovered'];
+		continentNewlyRecoveredOceania.innerText = continentDatas[0]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -107,26 +175,26 @@ const getContinentCovidData = () => {
 		continentNameAsia.innerText = continentDatas[1]['continent'];
 
 		const continentNewCasesAsia = document.querySelector('.continent-new-cases-result-asia');
-		continentNewCasesAsia.innerText = continentDatas[1]['todayCases'];
+		continentNewCasesAsia.innerText = continentDatas[1]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesAsia = document.querySelector('.continent-all-cases-asia');
-		continentAllCasesAsia.innerText = `All cases: ${continentDatas[1]['cases']}`;
+		continentAllCasesAsia.innerText = `All cases: ${continentDatas[1]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsAsia = document.querySelector('.continent-new-deaths-result-right-asia');
-		continentNewDeathsAsia.innerText = continentDatas[1]['todayDeaths'];
+		continentNewDeathsAsia.innerText = continentDatas[1]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsAsia = document.querySelector('.continent-total-deaths-result-right-asia');
-		continentTotalDeathsAsia.innerText = `Total deaths: ${continentDatas[1]['deaths']}`;
+		continentTotalDeathsAsia.innerText = `Total deaths: ${continentDatas[1]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredAsia = document.querySelector('.continent-new-recovered-result-right-asia');
-		continentNewlyRecoveredAsia.innerText = continentDatas[1]['recovered'];
+		continentNewlyRecoveredAsia.innerText = continentDatas[1]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -147,29 +215,29 @@ const getContinentCovidData = () => {
 
 		// - Left side -
 		const continentNameNorth_america = document.querySelector('.continent-title-north_america');
-		continentNameNorth_america.innerText = continentDatas[2]['continent'];
+		continentNameNorth_america.innerText = continentDatas[2]['continent'].toLocaleString();
 
 		const continentNewCasesNorth_america = document.querySelector('.continent-new-cases-result-north_america');
-		continentNewCasesNorth_america.innerText = continentDatas[2]['todayCases'];
+		continentNewCasesNorth_america.innerText = continentDatas[2]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesNorth_america = document.querySelector('.continent-all-cases-north_america');
-		continentAllCasesNorth_america.innerText = `All cases: ${continentDatas[2]['cases']}`;
+		continentAllCasesNorth_america.innerText = `All cases: ${continentDatas[2]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsNorth_america = document.querySelector('.continent-new-deaths-result-right-north_america');
-		continentNewDeathsNorth_america.innerText = continentDatas[2]['todayDeaths'];
+		continentNewDeathsNorth_america.innerText = continentDatas[2]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsNorth_america = document.querySelector('.continent-total-deaths-result-right-north_america');
-		continentTotalDeathsNorth_america.innerText = `Total deaths: ${continentDatas[2]['deaths']}`;
+		continentTotalDeathsNorth_america.innerText = `Total deaths: ${continentDatas[2]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredNorth_america = document.querySelector('.continent-new-recovered-result-right-north_america');
-		continentNewlyRecoveredNorth_america.innerText = continentDatas[2]['recovered'];
+		continentNewlyRecoveredNorth_america.innerText = continentDatas[2]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -194,26 +262,26 @@ const getContinentCovidData = () => {
 		continentNameEurope.innerText = continentDatas[3]['continent'];
 
 		const continentNewCasesEurope = document.querySelector('.continent-new-cases-result-europe');
-		continentNewCasesEurope.innerText = continentDatas[3]['todayCases'];
+		continentNewCasesEurope.innerText = continentDatas[3]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesEurope = document.querySelector('.continent-all-cases-europe');
-		continentAllCasesEurope.innerText = `All cases: ${continentDatas[3]['cases']}`;
+		continentAllCasesEurope.innerText = `All cases: ${continentDatas[3]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsEurope = document.querySelector('.continent-new-deaths-result-right-europe');
-		continentNewDeathsEurope.innerText = continentDatas[3]['todayDeaths'];
+		continentNewDeathsEurope.innerText = continentDatas[3]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsEurope = document.querySelector('.continent-total-deaths-result-right-europe');
-		continentTotalDeathsEurope.innerText = `Total deaths: ${continentDatas[3]['deaths']}`;
+		continentTotalDeathsEurope.innerText = `Total deaths: ${continentDatas[3]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredEurope = document.querySelector('.continent-new-recovered-result-right-europe');
-		continentNewlyRecoveredEurope.innerText = continentDatas[3]['recovered'];
+		continentNewlyRecoveredEurope.innerText = continentDatas[3]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -239,26 +307,26 @@ const getContinentCovidData = () => {
 		continentNameAfrica.innerText = continentDatas[4]['continent'];
 
 		const continentNewCasesAfrica = document.querySelector('.continent-new-cases-result-africa');
-		continentNewCasesAfrica.innerText = continentDatas[4]['todayCases'];
+		continentNewCasesAfrica.innerText = continentDatas[4]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesAfrica = document.querySelector('.continent-all-cases-africa');
-		continentAllCasesAfrica.innerText = `All cases: ${continentDatas[4]['cases']}`;
+		continentAllCasesAfrica.innerText = `All cases: ${continentDatas[4]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsAfrica = document.querySelector('.continent-new-deaths-result-right-africa');
-		continentNewDeathsAfrica.innerText = continentDatas[4]['todayDeaths'];
+		continentNewDeathsAfrica.innerText = continentDatas[4]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsAfrica = document.querySelector('.continent-total-deaths-result-right-africa');
-		continentTotalDeathsAfrica.innerText = `Total deaths: ${continentDatas[4]['deaths']}`;
+		continentTotalDeathsAfrica.innerText = `Total deaths: ${continentDatas[4]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredAfrica = document.querySelector('.continent-new-recovered-result-right-africa');
-		continentNewlyRecoveredAfrica.innerText = continentDatas[4]['recovered'];
+		continentNewlyRecoveredAfrica.innerText = continentDatas[4]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -285,26 +353,26 @@ const getContinentCovidData = () => {
 		continentNameSouth_america.innerText = continentDatas[5]['continent'];
 
 		const continentNewCasesSouth_america = document.querySelector('.continent-new-cases-result-south_america');
-		continentNewCasesSouth_america.innerText = continentDatas[5]['todayCases'];
+		continentNewCasesSouth_america.innerText = continentDatas[5]['todayCases'].toLocaleString();
 
 
 		const continentAllCasesSouth_america = document.querySelector('.continent-all-cases-south_america');
-		continentAllCasesSouth_america.innerText = `All cases: ${continentDatas[5]['cases']}`;
+		continentAllCasesSouth_america.innerText = `All cases: ${continentDatas[5]['cases'].toLocaleString()}`;
 
 		// -- -- --
 
 		// - Right side -
 
 		const continentNewDeathsSouth_america = document.querySelector('.continent-new-deaths-result-right-south_america');
-		continentNewDeathsSouth_america.innerText = continentDatas[5]['todayDeaths'];
+		continentNewDeathsSouth_america.innerText = continentDatas[5]['todayDeaths'].toLocaleString();
 
 		const continentTotalDeathsSouth_america = document.querySelector('.continent-total-deaths-result-right-south_america');
-		continentTotalDeathsSouth_america.innerText = `Total deaths: ${continentDatas[5]['deaths']}`;
+		continentTotalDeathsSouth_america.innerText = `Total deaths: ${continentDatas[5]['deaths'].toLocaleString()}`;
 
 		// -- -- --
 
 		const continentNewlyRecoveredSouth_america = document.querySelector('.continent-new-recovered-result-right-south_america');
-		continentNewlyRecoveredSouth_america.innerText = continentDatas[5]['recovered'];
+		continentNewlyRecoveredSouth_america.innerText = continentDatas[5]['recovered'].toLocaleString();
 
 		// -- -- --
 
@@ -330,7 +398,8 @@ $(document).ready(function(){
 	$(".owl-carousel").owlCarousel({
 		// margin:10,
 		center: true,
-		loop:true,
+		autoplay: true,
+		autoplayTimeout: 10000,
 		responsiveClass:true,
 		responsive:{
 			0:{
@@ -355,46 +424,14 @@ $(document).ready(function(){
 
 
 
+// Auto completion
 
+/*An array containing all the country names in the world:*/
+var countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua & Barbuda","Argentina","Armenia","Aruba","Australia","Austria","Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia & Herzegovina","Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Canada","Cape Verde","Cayman Islands","Central Arfrican Republic","Chad","Chile","China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cuba","Curacao","Cyprus","Czech Republic","Denmark","Djibouti","Dominica","Dominican Republic","Ecuador","Egypt","El Salvador","Equatorial Guinea","Eritrea","Estonia","Ethiopia","Falkland Islands","Faroe Islands","Fiji","Finland","France","French Polynesia","French West Indies","Gabon","Gambia","Georgia","Germany","Ghana","Gibraltar","Greece","Greenland","Grenada","Guam","Guatemala","Guernsey","Guinea","Guinea Bissau","Guyana","Haiti","Honduras","Hong Kong","Hungary","Iceland","India","Indonesia","Iran","Iraq","Ireland","Isle of Man","Israel","Italy","Jamaica","Japan","Jersey","Jordan","Kazakhstan","Kenya","Kiribati","Kosovo","Kuwait","Kyrgyzstan","Laos","Latvia","Lebanon","Lesotho","Liberia","Libya","Liechtenstein","Lithuania","Luxembourg","Macau","Macedonia","Madagascar","Malawi","Malaysia","Maldives","Mali","Malta","Marshall Islands","Mauritania","Mauritius","Mexico","Micronesia","Moldova","Monaco","Mongolia","Montenegro","Montserrat","Morocco","Mozambique","Myanmar","Namibia","Nauro","Nepal","Netherlands","Netherlands Antilles","New Caledonia","New Zealand","Nicaragua","Niger","Nigeria","North Korea","Norway","Oman","Pakistan","Palau","Palestine","Panama","Papua New Guinea","Paraguay","Peru","Philippines","Poland","Portugal","Puerto Rico","Qatar","Reunion","Romania","Russia","Rwanda","Saint Pierre & Miquelon","Samoa","San Marino","Sao Tome and Principe","Saudi Arabia","Senegal","Serbia","Seychelles","Sierra Leone","Singapore","Slovakia","Slovenia","Solomon Islands","Somalia","South Africa","South Korea","South Sudan","Spain","Sri Lanka","St Kitts & Nevis","St Lucia","St Vincent","Sudan","Suriname","Swaziland","Sweden","Switzerland","Syria","Taiwan","Tajikistan","Tanzania","Thailand","Timor L'Este","Togo","Tonga","Trinidad & Tobago","Tunisia","Turkey","Turkmenistan","Turks & Caicos","Tuvalu","Uganda","Ukraine","United Arab Emirates","United Kingdom","United States of America","Uruguay","Uzbekistan","Vanuatu","Vatican City","Venezuela","Vietnam","Virgin Islands (US)","Yemen","Zambia","Zimbabwe"];
 
-
-
-// // Auto completion
-
-// var availableTags = [
-// "ActionScript",
-// "AppleScript",
-// "Asp",
-// "BASIC",
-// "C",
-// "C++",
-// "Clojure",
-// "COBOL",
-// "ColdFusion",
-// "Erlang",
-// "Fortran",
-// "Groovy",
-// "Haskell",
-// "Java",
-// "JavaScript",
-// "Lisp",
-// "Perl",
-// "PHP",
-// "Python",
-// "Ruby",
-// "Scala",
-// "Scheme"
-// ];
-
-// $("#country-input" ).autocomplete({
-// 	source: availableTags
-// });
-
-
-
-
-
-
+$("#country-input" ).autocomplete({
+	source: countries
+});
 
 
 
