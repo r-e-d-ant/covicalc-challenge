@@ -39,7 +39,7 @@ li {
     transition: 300ms background-color, 300ms color;
 }
 .btn:hover {
-    background-color: var(--primary-clr);
+    background-color: var(--second-clr-alt);
     color: var(--white-clr-alt);
 }
 
@@ -72,7 +72,6 @@ header {
     padding: .7rem 1.8rem;
     font-size: 1rem;
     border-radius: 6px;
-    transition: 300ms background-color;
 }
 @media screen and (min-width: 1024px){
     header {
@@ -127,6 +126,7 @@ header {
     border: thin solid var(--border-clr);
     border-radius: 8px;
     width: 100%;
+    position: relative;
 }
 .search-country-title {
     font-size: .9rem;
@@ -147,20 +147,58 @@ header {
 .bx-calendar {
     opacity: .5;
 }
+.country-img {
+    width: 5%;
+    margin-left: .5rem;
+    display: none;
+}
 .country-input {
     height: 2.8rem;
-    border: thin solid var(--border-clr);
+    border: none;
     border-radius: .3rem;
     font-size: 1.2rem;
-    padding: 0 .5rem;
+    padding: 0 .8rem;
     margin-top: .1rem;
     margin-right: .1rem;
     margin-left: .1rem;
     margin-bottom: 1rem;
     outline: none;
 }
-.country-input:focus {
-    box-shadow: 0 0 5px 5px #E6F5F3;
+.ui-widget-content {
+    border: thin solid var(--border-clr);
+    background-color: var(--white-clr);
+    max-height: 20rem;
+    overflow-y: scroll;
+    border-bottom-left-radius: 8px;
+    border-bottom-right-radius: 8px;
+}
+.ui-menu-item {
+    cursor: pointer;
+    border-bottom: thin solid var(--gray-clr);
+    padding: 1rem .5rem;
+}
+.ui-menu-item:hover {
+    background-color: var(--white-clr-alt);
+}
+.ui-widget {
+    font-family: "Roboto", sans-serif;
+}
+ .ui-menu {
+    display: block;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 2px;
+}
+/*.country-input:focus {
+    box-shadow: 0 0 5px 2px #E6F5F3;
+}*/
+.bx-down-arrow {
+    cursor: pointer;
+    position: absolute;
+    top: 16%;
+    right: 0;
+    transform: translate(-50%, -50%);
 }
 .submit-country-btn {
     font-size: 1.1rem;
@@ -184,11 +222,19 @@ header {
         width: 642px;
         height: 58px;
     }
+    .country-img {
+        display: block;
+    }
     .country-input {
         margin-bottom: 0;
         margin-left: .1rem;
         height: 52px;
         width: 288px;
+    }
+    .bx-down-arrow {
+        top: 50%;
+        right: 56%;
+        transform: translate(-50%, -50%);
     }
     .date-container {
         width: 235px;
@@ -291,7 +337,7 @@ header {
 
 @media screen and (min-width: 1024px){
     .per-continent-container {
-        margin: 3rem 0;
+        margin: 5rem 0;
     }
 }
 
@@ -300,7 +346,7 @@ header {
     position: relative;
 }
 .per-continent-title {
-    font-size: 2rem;
+    font-size: 1.8rem;
     font-family: "Bebas Neue", cursive;
     margin-bottom: 1.9rem;
     color: var(--text-clr);
@@ -319,6 +365,7 @@ header {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem 0;
 }
 .continent-title {
     font-weight: bold;
@@ -389,6 +436,7 @@ header {
     height: 50px !important;
     border-radius: 50% !important;
     background-color: var(--second-clr) !important;
+    opacity: .7 !important;
 }
 .owl-prev:hover, .owl-next:hover {
     background-color: var(--primary-clr) !important;
@@ -409,6 +457,9 @@ header {
     right: 0;
     transform: translate(0, -50%);
 }
+.disabled {
+    opacity: .1 !important;
+}
 
 @media screen and (min-width: 768px){
     .continent-card {
@@ -417,6 +468,7 @@ header {
         justify-content: space-between;
         width: 500px;
         margin: 3rem 0;
+        padding: 0;
     }
     .part {
         padding: 1.3rem 0;
