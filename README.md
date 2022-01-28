@@ -1,9 +1,9 @@
 # covidcalc-challenge
 A challenge of creating a simple one page COVID calculator that pulls data from an open COVID API.
 
-```
-check the live site here: https://covidcalc.netlify.app
-```
+
+* check the live site here: https://covidcalc.netlify.app
+
 
 Built using: 
 ```
