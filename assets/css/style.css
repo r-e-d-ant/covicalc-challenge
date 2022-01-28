@@ -190,9 +190,6 @@ header {
     margin: 0;
     padding: 2px;
 }
-/*.country-input:focus {
-    box-shadow: 0 0 5px 2px #E6F5F3;
-}*/
 .bx-down-arrow {
     cursor: pointer;
     position: absolute;
@@ -212,10 +209,6 @@ header {
 }
 
 @media screen and (min-width: 768px){
-    .seach-country-form-container {
-        /*flex-direction: row;
-        justify-content: center;*/
-    }
     .search-country-form-sub-container {
         flex-direction: row;
         align-items: center;
@@ -577,9 +570,6 @@ header {
     }
 }
 @media screen and (min-width: 1024px){
-    .developer-picture-and-name {
-        /*margin: 0 3rem;*/
-    }
     .developer {
         margin-right: 15rem;
     }
