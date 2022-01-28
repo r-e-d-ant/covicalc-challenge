@@ -415,7 +415,7 @@ $(document).ready(function(){
 		center: true,
 		autoplay: true,
 		autoplayTimeout: 10000,
-		responsiveClass:true,
+		responsiveClass: true,
 		responsive:{
 			0:{
 				items:1,
