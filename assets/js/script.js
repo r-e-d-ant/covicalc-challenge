@@ -409,35 +409,6 @@ const getContinentCovidData = () => {
 // call the function to show covid 19 data for all the continents.
 getContinentCovidData();
 
-// Carousel of the continents card
-$(document).ready(function(){
-	$(".owl-carousel").owlCarousel({
-		center: true,
-		autoplay: true,
-		autoplayTimeout: 10000,
-		responsiveClass: true,
-		responsive:{
-			0:{
-				items:1,
-				nav:true
-			},
-			768:{
-				items:1,
-				nav:true,
-			},
-			1000:{
-				items:2,
-				nav:true,
-			},
-			2000:{
-				items:3,
-				nav:true,
-			}
-		}
-	});
-});
-
-
 
 
 
